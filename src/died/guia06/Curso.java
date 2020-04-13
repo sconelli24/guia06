@@ -1,5 +1,6 @@
 package died.guia06;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,18 +46,46 @@ public class Curso {
 	 * @param a
 	 * @return
 	 */
-	public Boolean inscribir(Alumno a) {
+	public void inscribir1(Alumno a) throws MinimoCreditosNecesarios,CupoDisponible,CantCursosInscripto,IOException {
+		if(a.creditosObtenidos()<this.creditosRequeridos)
+			throw new MinimoCreditosNecesarios();
+		else if(this.cupo <= this.inscriptos.size())
+			throw new CupoDisponible();
+		else if(a.getCursando().size()>=3)
+			throw new CantCursosInscripto();
+		
 		log.registrar(this, "inscribir ",a.toString());
-		return false;
+		
+		a.inscripcionAceptada(this);
 	}
 	
-	
+	public void inscribir(Alumno a) {
+		try {
+			inscribir1(a);
+		}catch(MinimoCreditosNecesarios e1){
+			System.out.println("Minimo de creditos necesarios no alcanzado");
+			e1.toString();
+		}catch(CupoDisponible e2){
+			System.out.println("El curso no tiene cupo disponible");
+		}catch(CantCursosInscripto e3){
+			System.out.println("La cantidad de cursos inscriptos no debe superar a 3");
+		}catch(IOException e4) {
+			e4.printStackTrace();
+		}
+	}
 	/**
 	 * imprime los inscriptos en orden alfabetico
 	 */
 	public void imprimirInscriptos() {
-		log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+		try {
+			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
+	public Integer getCreditos() {
+		return this.creditos;
+	}
 
 }
