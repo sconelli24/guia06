@@ -31,7 +31,6 @@ public class Curso {
 		this.inscriptos = new ArrayList<Alumno>();
 		this.log = new Registro();
 	}
-	
 
 	/**
 	 * Este método, verifica si el alumno se puede inscribir y si es así lo agrega al curso,
@@ -86,6 +85,10 @@ public class Curso {
 
 	public Integer getCreditos() {
 		return this.creditos;
+	}
+	
+	public void setCreditos(Integer creditos) {
+		this.creditos = creditos;
 	}
 
 }

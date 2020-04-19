@@ -26,13 +26,17 @@ public class Alumno {
 	public void inscripcionAceptada(Curso c) {
 		this.cursando.add(c);
 	}
-
-	public List<Curso> getCursando() {
-		return cursando;
-	}
 	
 	public String getNombre() {
 		return this.nombre;
+	}
+	
+	public List<Curso> getAprobados() {
+		return this.aprobados;
+	}
+	
+	public List<Curso> getCursando() {
+		return this..cursando;
 	}
 	
 	public Alumno() {}
