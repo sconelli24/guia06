@@ -26,6 +26,18 @@ public class Curso {
 	
 	private Registro log;
 	
+	public Curso(Integer id, String nombre, Integer cicloLectivo, Integer cupo, List<Alumno> inscriptos, Integer creditos, Integer creditosRequeridos) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.cicloLectivo = cicloLectivo;
+		this.cupo = cupo;
+		this.inscriptos = inscriptos;
+		this.creditos = creditos;
+		this.creditosRequeridos = creditosRequeridos;
+		this.log = new Registro();
+	}
+	
 	public Curso() {
 		super();
 		this.inscriptos = new ArrayList<Alumno>();
@@ -45,7 +57,7 @@ public class Curso {
 	 * @param a
 	 * @return
 	 */
-	public void inscribir1(Alumno a) throws MinimoCreditosNecesarios,CupoDisponible,CantCursosInscripto,IOException {
+	private void inscribir1(Alumno a) throws MinimoCreditosNecesarios,CupoDisponible,CantCursosInscripto,IOException {
 		if(a.creditosObtenidos()<this.creditosRequeridos)
 			throw new MinimoCreditosNecesarios();
 		else if(this.cupo <= this.inscriptos.size())
@@ -72,6 +84,46 @@ public class Curso {
 			e4.printStackTrace();
 		}
 	}
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Integer getCicloLectivo() {
+		return cicloLectivo;
+	}
+
+	public void setCicloLectivo(Integer cicloLectivo) {
+		this.cicloLectivo = cicloLectivo;
+	}
+
+	public Integer getCupo() {
+		return cupo;
+	}
+
+	public void setCupo(Integer cupo) {
+		this.cupo = cupo;
+	}
+
+	public Integer getCreditosRequeridos() {
+		return creditosRequeridos;
+	}
+
+	public void setCreditosRequeridos(Integer creditosRequeridos) {
+		this.creditosRequeridos = creditosRequeridos;
+	}
+
 	/**
 	 * imprime los inscriptos en orden alfabetico
 	 */
